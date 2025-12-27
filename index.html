@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurelius Realty Group</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; line-height:1.6; }
+    nav { display:flex; justify-content:space-between; padding:1rem; background:#fff; border-bottom:1px solid #ccc; position:sticky; top:0; }
+    nav button { margin-left:1rem; cursor:pointer; background:none; border:none; font-size:1rem; }
+    .container { padding:2rem; max-width:1200px; margin:auto; }
+    .grid { display:grid; gap:1rem; }
+    .grid-2 { grid-template-columns:1fr 1fr; }
+    .grid-3 { grid-template-columns:1fr 1fr 1fr; }
+    .card { border:1px solid #ccc; border-radius:12px; padding:1rem; cursor:pointer; transition:0.2s; }
+    .card:hover { transform:scale(1.02); }
+    img { width:100%; border-radius:12px; }
+    button.primary { background:#0070f3; color:#fff; border:none; padding:0.5rem 1rem; border-radius:6px; cursor:pointer; }
+    button.primary:hover { background:#005ecb; }
+    form input, form select { width:100%; padding:0.5rem; margin-bottom:0.5rem; border:1px solid #ccc; border-radius:6px; }
+    footer { text-align:center; padding:1rem; border-top:1px solid #ccc; margin-top:2rem; font-size:0.9rem; color:#555; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div><strong>Aurelius Realty Group</strong></div>
+  <div>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('services')">Services</button>
+    <button onclick="showPage('developments')">Developments</button>
+    <button onclick="showPage('testimonials')">Testimonials</button>
+    <button onclick="showPage('book')">Book</button>
+  </div>
+</nav>
+
+<div class="container">
+  <!-- Pages -->
+  <div id="home">
+    <h1>Luxury Real Estate, Engineered With Intelligence</h1>
+    <p>We design and deploy intelligent systems that help real estate firms close faster and operate leaner.</p>
+    <button class="primary" onclick="showPage('services')">Explore Services</button>
+  </div>
+
+  <div id="services" class="hidden">
+    <h2>Core Services</h2>
+    <div class="grid grid-3">
+      <div class="card" onclick="showServiceDetail('booking')">
+        <h3>AI Booking & Viewing Systems</h3>
+        <p>Schedule viewings and consultations automatically with our AI system.</p>
+      </div>
+      <div class="card" onclick="showServiceDetail('lead')">
+        <h3>Lead Qualification & Routing</h3>
+        <p>Automatically qualify leads and route them to the right agent.</p>
+      </div>
+      <div class="card" onclick="showServiceDetail('crm')">
+        <h3>CRM & Sales Automation</h3>
+        <p>Track your sales pipeline and manage leads efficiently.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="service-detail" class="hidden">
+    <button onclick="showPage('services')">← Back to Services</button>
+    <h2 id="service-title"></h2>
+    <p id="service-desc"></p>
+    <ul id="service-bullets"></ul>
+
+    <div id="service-demo"></div>
+  </div>
+
+  <div id="developments" class="hidden">
+    <h2>Featured Developments</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1502673530728-f79b4cab31b1" />
+        <h3>The Meridian Residences</h3>
+        <p>Luxury apartments with AI-assisted sales funnel and automated buyer updates.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6" />
+        <h3>Crown Wharf Lofts</h3>
+        <p>Modern lofts with real-time demand tracking and automated lead routing.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1531266757540-7b3c6c0f2ff8" />
+        <h3>Echelon Park Villas</h3>
+        <p>Private villas with full automation for viewings, CRM, and follow-ups.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="testimonials" class="hidden">
+    <h2>Client Feedback</h2>
+    <div class="grid grid-2">
+      <div class="card"><p>"Booking volume increased by 42% in the first 60 days."</p><p>— Development Partner</p></div>
+      <div class="card"><p>"The automation freed our agents to focus purely on closing."</p><p>— Senior Broker</p></div>
+      <div class="card"><p>"Buyers consistently comment on the premium experience."</p><p>— Investor Client</p></div>
+    </div>
+  </div>
+
+  <div id="book" class="hidden">
+    <h2>Book a Consultation</h2>
+    <form onsubmit="alert('Consultation request submitted!'); return false;">
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="date" required>
+      <button class="primary" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<footer>© 2025 Aurelius Realty Group</footer>
+
+<script>
+  const servicesData = {
+    booking: {
+      title: "AI Booking & Viewing Systems",
+      desc: "A fully deployable booking system that allows prospects to schedule viewings, consultations, or calls in real time.",
+      bullets: [
+        "Live availability scheduling",
+        "Automatic confirmation emails",
+        "Calendar sync (Google / Outlook)",
+        "Admin management panel"
+      ],
+      demo: `<form onsubmit="alert('Booking submitted!'); return false;">
+              <input type='text' placeholder='Name' required>
+              <input type='email' placeholder='Email' required>
+              <input type='date' required>
+              <button class='primary' type='submit'>Book Viewing</button>
+            </form>`
+    },
+    lead: {
+      title: "Lead Qualification & Routing",
+      desc: "Automatically qualify inbound leads and route them to the correct agent or sales pipeline.",
+      bullets: [
+        "Custom qualification questions",
+        "High / Medium / Low intent scoring",
+        "Instant agent notifications",
+        "CRM-ready data structure"
+      ],
+      demo: `<button class='primary' onclick="alert('Lead scored!')">Calculate Lead Score</button>`
+    },
+    crm: {
+      title: "CRM & Sales Automation",
+      desc: "A lightweight CRM system tailored specifically for brokers and developers.",
+      bullets: [
+        "Lead status tracking",
+        "Deal pipeline stages",
+        "Notes & follow-ups",
+        "Exportable data"
+      ],
+      demo: `<table border='1' style='width:100%;'>
+              <tr><th>Lead</th><th>Stage</th></tr>
+              <tr><td>John Smith</td><td>Qualified</td></tr>
+              <tr><td>Sarah Lee</td><td>Viewing Scheduled</td></tr>
+             </table>`
+    }
+  };
+
+  function showPage(id) {
+    document.querySelectorAll('.container > div').forEach(div => div.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  function showServiceDetail(serviceKey) {
+    const service = servicesData[serviceKey];
+    showPage('service-detail');
+    document.getElementById('service-title').innerText = service.title;
+    document.getElementById('service-desc').innerText = service.desc;
+    const bulletsEl = document.getElementById('service-bullets');
+    bulletsEl.innerHTML = '';
+    service.bullets.forEach(b => { bulletsEl.innerHTML += `<li>${b}</li>`; });
+    document.getElementById('service-demo').innerHTML = service.demo;
+  }
+</script>
+
+</body>
+</html>
